@@ -1,7 +1,13 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="{{ settings.ADMIN_MEDIA_PREFIX }}css/forms.css"/>
+    <script type="text/javascript" src="/admin/jsi18n/"></script>
+    <script type="text/javascript" src="{{ settings.ADMIN_MEDIA_PREFIX }}js/core.js"></script>
+    <script type="text/javascript" src="{{ settings.ADMIN_MEDIA_PREFIX }}js/jquery.js"></script>
+    <script type="text/javascript" src="{{ settings.ADMIN_MEDIA_PREFIX }}js/jquery.init.js"></script>
+    {% block head %}
+    {% endblock %}
     <title>Test Project</title>
 </head>
 <body>

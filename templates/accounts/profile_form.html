@@ -1,4 +1,11 @@
 {% extends 'base.html' %}
+{% block head %}
+    {% load adminmedia %}
+    {{ form.media }}
+    <script type="text/javascript">
+        window.__admin_media_prefix__ = "{% filter escapejs %}{% admin_media_prefix %}{% endfilter %}";
+    </script>
+{% endblock %}
 {% block content %}
     <form class="profile-form" method="post" action=".">
         {% csrf_token %}

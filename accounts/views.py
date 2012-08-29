@@ -4,11 +4,13 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView
 
 from models import Profile
+from forms import ProfileForm
 from factories import ProfileFactory
 
 class ProfileMixin(object):
     model = Profile
     success_url = '/'
+    form_class = ProfileForm
 
 
 class AuthenticationMixin(object):
