@@ -7,9 +7,9 @@ from factories import UserFactory, ProfileFactory
 
 class ProfileTest(TestCase):
     profile = ProfileFactory.stub()
-    url = reverse('profile_detail')
+    detail_url = reverse('profile_detail')
     client = Client()
-    response = client.get(url)
+    response = client.get(detail_url)
     response_obj = response.context['object']
 
     def test_creating_profile(self):
