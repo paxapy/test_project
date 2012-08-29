@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="profile">
+    <p><label>First name: </label>{{ object.first_name }}</p>
+    <p><label>Last name: </label>{{ object.last_name }}</p>
+    <p><label>Birthday: </label>{{ object.birthday }}</p>
+    <p><label>Biography: </label>{{ object.biography }}</p>
+    <p><label>Contacts: </label>{{ object.contacts }}</p>
+</div>
+{% endblock %}
