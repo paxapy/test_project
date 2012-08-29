@@ -8,4 +8,4 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        exclude = ('user',)
+        fields = ('contacts','biography','birthday','last_name', 'first_name')
