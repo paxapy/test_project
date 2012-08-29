@@ -2,9 +2,16 @@
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title></title>
+    <title>Test Project</title>
 </head>
 <body>
+{% block auth %}
+    {% if not user.is_authenticated %}
+        <a href="{% url django.contrib.auth.views.login %}">login</a>
+    {% else %}
+        <a href="{% url django.contrib.auth.views.logout %}">logout</a>
+    {% endif %}
+{% endblock %}
 {% block content %}
 {% endblock %}
 </body>
