@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.test.client import Client
 from django.core.urlresolvers import reverse
+from django.conf import settings
 
 from factories import UserFactory, ProfileFactory
 
@@ -42,3 +43,8 @@ class AuthenticationTest(TestCase):
     def test_logout(self):
         response = self.client.get(self.logout_url)
         self.assertEquals(response.status_code, 302)
+
+class ContextSettingsTest(TestCase):
+    def test_settings_in_context(self):
+        response = self.client.get('/')
+        self.assertEquals(response.context['settings'].PROJECT_NAME, settings.PROJECT_NAME)
