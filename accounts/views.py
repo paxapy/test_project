@@ -12,18 +12,17 @@ class ProfileMixin(object):
     success_url = '/'
     form_class = ProfileForm
 
+    def get_object(self, queryset=None):
+        return self.request.user.profile
+
 
 class AuthenticationMixin(object):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(AuthenticationMixin, self).dispatch(*args, **kwargs)
 
-class ProfileDetailView(ProfileMixin, DetailView):
-
-    def get_object(self, queryset=None):
-        return ProfileFactory.stub()
+class ProfileDetailView(ProfileMixin, AuthenticationMixin, DetailView):
+    pass
 
 class ProfileUpdateView(ProfileMixin, AuthenticationMixin, UpdateView):
-
-    def get_object(self, queryset=None):
-        return self.request.user.profile
+    pass

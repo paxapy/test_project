@@ -1,35 +1,14 @@
 from django.test import TestCase
-from django.test.client import Client
 from django.core.urlresolvers import reverse
 from django.conf import settings
 
-from factories import UserFactory, ProfileFactory
+from factories import UserFactory
 
 class ProfileTest(TestCase):
-    profile = ProfileFactory.stub()
-    detail_url = reverse('profile_detail')
-    client = Client()
-    response = client.get(detail_url)
-    response_obj = response.context['object']
 
     def test_creating_profile(self):
-        user = UserFactory.create()
-        self.assertEquals(user, user.profile.user)
-
-    def test_profile_first_name(self):
-        self.assertEquals(self.profile.first_name, self.response_obj.first_name)
-
-    def test_profile_last_name(self):
-        self.assertEquals(self.profile.last_name, self.response_obj.last_name)
-
-    def test_profile_birthday(self):
-        self.assertEquals(self.profile.birthday, self.response_obj.birthday)
-
-    def test_profile_biography(self):
-        self.assertEquals(self.profile.biography, self.response_obj.biography)
-
-    def test_profile_contacts(self):
-        self.assertEquals(self.profile.contacts, self.response_obj.contacts)
+        self.user = UserFactory.create()
+        self.assertEquals(self.user, self.user.profile.user)
 
 class AuthenticationTest(TestCase):
     user = UserFactory.build()
@@ -46,5 +25,6 @@ class AuthenticationTest(TestCase):
 
 class ContextSettingsTest(TestCase):
     def test_settings_in_context(self):
-        response = self.client.get('/')
+        login_url = reverse('login')
+        response = self.client.get(login_url)
         self.assertEquals(response.context['settings'].PROJECT_NAME, settings.PROJECT_NAME)

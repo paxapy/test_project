@@ -7,4 +7,6 @@
     <p><label>Biography: </label>{{ object.biography }}</p>
     <p><label>Contacts: </label>{{ object.contacts }}</p>
 </div>
+{% load admin_link %}
+{% admin_edit object %}
 {% endblock %}
