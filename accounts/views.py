@@ -3,9 +3,9 @@ from django.utils.decorators import method_decorator
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView
 
-from models import Profile
-from forms import ProfileForm
-from factories import ProfileFactory
+from accounts.models import Profile
+from accounts.forms import ProfileForm
+from accounts.factories import ProfileFactory
 
 class ProfileMixin(object):
     model = Profile

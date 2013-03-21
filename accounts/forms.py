@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.admin.widgets import AdminDateWidget
-from models import Profile
+from accounts.models import Profile
 
 class ProfileForm(forms.ModelForm):
 

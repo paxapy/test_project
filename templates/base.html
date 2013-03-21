@@ -13,10 +13,10 @@
 <body>
 {% block auth %}
     {% if not user.is_authenticated %}
-        <a href="{% url django.contrib.auth.views.login %}">login</a>
+        <a href="{% url 'django.contrib.auth.views.login' %}">login</a>
     {% else %}
-        <a href="{% url profile_update %}">change profile</a>
-        <a href="{% url django.contrib.auth.views.logout %}">logout</a>
+        <a href="{% url 'profile_update' %}">change profile</a>
+        <a href="{% url 'django.contrib.auth.views.logout' %}">logout</a>
     {% endif %}
 {% endblock %}
 {% block content %}

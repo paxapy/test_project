@@ -4,7 +4,7 @@ from datetime import date
 
 from django.contrib.auth.models import User
 
-from models import Profile
+from accounts.models import Profile
 
 class UserFactory(factory.Factory):
     FACTORY_FOR = User
@@ -13,7 +13,7 @@ class UserFactory(factory.Factory):
 
 class ProfileFactory(factory.Factory):
     FACTORY_FOR = Profile
-    user = UserFactory.stub()
+    #user = UserFactory.stub()
     first_name = 'John'
     last_name = 'Doe'
     birthday = date.today()
