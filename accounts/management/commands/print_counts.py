@@ -1,9 +1,15 @@
 from django.db import models
 from django.core.management.base import NoArgsCommand
 
+
 class Command(NoArgsCommand):
 
     def handle_noargs(self, **options):
+        print('Objects counts - Model: count')
         for model in models.get_models():
-           print 'Model: {0}, objects: {1}'.format(model._meta.app_label,
-               model.objects.all().count())
+            print(
+                '{0}: {1}'.format(
+                    model.__name__,
+                    model.objects.count(),
+                )
+            )

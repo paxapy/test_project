@@ -6,13 +6,14 @@ from django.views.generic.edit import UpdateView
 from accounts.models import Profile
 from accounts.forms import ProfileForm
 
+
 class ProfileMixin(object):
     model = Profile
     success_url = '/'
     form_class = ProfileForm
 
     def get_object(self, queryset=None):
-        return self.request.user.profile
+        return self.request.user
 
 
 class AuthenticationMixin(object):
@@ -20,8 +21,10 @@ class AuthenticationMixin(object):
     def dispatch(self, *args, **kwargs):
         return super(AuthenticationMixin, self).dispatch(*args, **kwargs)
 
+
 class ProfileDetailView(ProfileMixin, AuthenticationMixin, DetailView):
     pass
+
 
 class ProfileUpdateView(ProfileMixin, AuthenticationMixin, UpdateView):
     pass

@@ -1,39 +1,40 @@
 from django.db import models
-from django.contrib.auth.models import User
-# Create your models here.
+from django.contrib.auth.models import AbstractUser
 
-class Profile(models.Model):
-    user = models.OneToOneField(User)
-    first_name = models.CharField(max_length=142)
-    last_name = models.CharField(max_length=142)
+
+class Profile(AbstractUser):
+
     birthday = models.DateField(null=True)
     biography = models.TextField()
     contacts = models.TextField()
 
+
 class DbNote(models.Model):
-    CHOICES =(
-        ('c', 'created'),
-        ('u', 'updated'),
-        ('d', 'deleted')
+
+    CREATED = 'c'
+    UPDATED = 'u'
+    DELETED = 'd'
+    CHOICES = (
+        (CREATED, 'created'),
+        (UPDATED, 'updated'),
+        (DELETED, 'deleted')
     )
     note = models.CharField(choices=CHOICES, max_length=1)
     model = models.CharField(max_length=142)
     timestamp = models.DateTimeField(auto_now_add=True)
 
-def create_profile(**kwargs):
-    if kwargs['created']:
-        Profile.objects.create(user=kwargs['instance'])
 
 def del_note(sender, **kwargs):
-    DbNote.objects.create(note='d',model=sender.__name__)
+    DbNote.objects.create(note=DbNote.DELETED, model=sender.__name__)
+
 
 def save_note(sender, **kwargs):
-    if kwargs['created']:
+    if kwargs.get('created'):
         if sender.__name__ != 'DbNote':
-            DbNote.objects.create(note='c',model=sender.__name__)
+            DbNote.objects.create(note=DbNote.CREATED, model=sender.__name__)
     else:
-        DbNote.objects.create(note='u',model=sender.__name__)
+        DbNote.objects.create(note=DbNote.UPDATED, model=sender.__name__)
 
-models.signals.post_save.connect(create_profile, sender=User)
+
 models.signals.post_save.connect(save_note)
 models.signals.post_delete.connect(del_note)

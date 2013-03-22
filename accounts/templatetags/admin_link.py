@@ -7,6 +7,7 @@ register = template.Library()
 
 @register.tag(name='admin_edit')
 def render_admin_url(parser, token):
+
     try:
         tag_name, model = token.split_contents()
     except ValueError:

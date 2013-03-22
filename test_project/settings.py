@@ -127,8 +127,10 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'accounts',
 )
+
 LOGIN_REDIRECT_URL = '/'
 ADMIN_MEDIA_PREFIX = '/static/admin/'
+AUTH_USER_MODEL = 'accounts.Profile'
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.
