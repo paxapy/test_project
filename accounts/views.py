@@ -5,7 +5,6 @@ from django.views.generic.edit import UpdateView
 
 from accounts.models import Profile
 from accounts.forms import ProfileForm
-from accounts.factories import ProfileFactory
 
 class ProfileMixin(object):
     model = Profile

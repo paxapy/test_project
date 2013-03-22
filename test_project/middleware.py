@@ -1,7 +1,9 @@
 from django.utils.log import getLogger
 from django.db import connection
 
+
 logger = getLogger(__name__)
+
 
 class StoreDbRequestsMiddleware(object):
 

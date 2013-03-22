@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 {% block head %}
-    {% load adminmedia %}
     {{ form.media }}
     <script type="text/javascript">
-        window.__admin_media_prefix__ = "{% filter escapejs %}{% admin_media_prefix %}{% endfilter %}";
+        window.__admin_media_prefix__ = "{% filter escapejs %}{{ settings.ADMIN_MEDIA_PREFIX }}{% endfilter %}";
     </script>
 {% endblock %}
 {% block content %}
