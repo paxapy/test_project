@@ -4,9 +4,9 @@ from django.contrib.auth.models import AbstractUser
 
 class Profile(AbstractUser):
 
-    birthday = models.DateField(null=True)
-    biography = models.TextField()
-    contacts = models.TextField()
+    birthday = models.DateField(blank=True, null=True)
+    biography = models.TextField(blank=True)
+    contacts = models.TextField(blank=True)
 
 
 class DbNote(models.Model):
